@@ -1,0 +1,74 @@
+
+@prefix : <http://example.org/vet-clinic#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+
+
+:СущностьКлиники rdf:type owl:Class ;
+    rdfs:label "Сущность ветеринарной клиники" .
+
+:Животное rdf:type owl:Class ;
+    rdfs:subClassOf :СущностьКлиники ;
+    rdfs:label "Животное" .
+
+:Владелец rdf:type owl:Class ;
+    rdfs:subClassOf :СущностьКлиники ;
+    rdfs:label "Владелец животного" .
+
+:Ветеринар rdf:type owl:Class ;
+    rdfs:subClassOf :СущностьКлиники ;
+    rdfs:label "Ветеринарный врач" .
+
+
+
+
+:ИмеетРодителя rdf:type owl:ObjectProperty ;
+    rdfs:label "Имеет родителя (животное)" ;
+    rdfs:domain :Животное ;
+    rdfs:range :Животное ;
+    rdf:type owl:FunctionalProperty ;
+    rdf:type owl:IrreflexiveProperty .
+
+:ИмеетПредка rdf:type owl:ObjectProperty ;
+    rdfs:label "Имеет предка (животное)" ;
+    rdfs:domain :Животное ;
+    rdfs:range :Животное ;
+    rdf:type owl:TransitiveProperty .
+
+:ИмеетПотомка rdf:type owl:ObjectProperty ;
+    rdfs:label "Имеет потомка (животное)" ;
+    owl:inverseOf :ИмеетПредка ;
+    rdfs:domain :Животное ;
+    rdfs:range :Животное .
+
+
+:ИмеетРодителя rdfs:subPropertyOf :ИмеетПредка .
+
+
+
+:Принадлежит rdf:type owl:ObjectProperty ;
+    rdfs:label "Принадлежит владельцу" ;
+    rdfs:domain :Животное ;
+    rdfs:range :Владелец .
+
+:ЛечитсяУ rdf:type owl:ObjectProperty ;
+    rdfs:label "Лечится у ветеринара" ;
+    rdfs:domain :Животное ;
+    rdfs:range :Ветеринар .
+
+
+
+:Собака1 rdf:type :Животное ;
+    rdfs:label "Собака 1" ;
+    :ИмеетРодителя :СобакаРодитель .
+
+:СобакаРодитель rdf:type :Животное ;
+    rdfs:label "Собака — родитель" .
+
+:Иван rdf:type :Владелец ;
+    rdfs:label "Иван — владелец" .
+
+:Собака1 :Принадлежит :Иван .
