@@ -1,0 +1,72 @@
+@prefix : <http://example.org/vetclinic#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+<http://example.org/vetclinic_ru> a owl:Ontology ;
+    rdfs:comment "Онтология ветеринарной клиники: пациенты (животные), симптомы, диагнозы, лечение."@ru .
+
+
+:Животное a owl:Class ;
+    rdfs:label "Животное"@ru ;
+    rdfs:comment "Пациент ветеринарной клиники."@ru .
+
+:Кошка a owl:Class ;
+    rdfs:subClassOf :Животное ;
+    rdfs:label "Кошка"@ru .
+
+:Собака a owl:Class ;
+    rdfs:subClassOf :Животное ;
+    rdfs:label "Собака"@ru .
+
+:Симптом a owl:Class ;
+    rdfs:label "Симптом"@ru .
+
+:Диагноз a owl:Class ;
+    rdfs:label "Диагноз"@ru .
+
+:Отит a owl:Class ;
+    rdfs:subClassOf :Диагноз ;
+    rdfs:label "Отит"@ru ;
+    rdfs:comment "Воспаление уха у животных."@ru .
+
+:Лечение a owl:Class ;
+    rdfs:label "Лечение"@ru .
+
+:Антибиотикотерапия a owl:Class ;
+    rdfs:subClassOf :Лечение ;
+    rdfs:label "Антибиотикотерапия"@ru .
+
+
+:имеетСимптом a owl:ObjectProperty ;
+    rdfs:domain :Животное ;
+    rdfs:range :Симптом ;
+    rdfs:label "имеет симптом"@ru .
+
+:имеетДиагноз a owl:ObjectProperty ;
+    rdfs:domain :Животное ;
+    rdfs:range :Диагноз ;
+    rdfs:label "имеет диагноз"@ru .
+
+:назначеноЛечение a owl:ObjectProperty ;
+    rdfs:domain :Животное ;
+    rdfs:range :Лечение ;
+    rdfs:label "назначено лечение"@ru .
+
+
+
+:Барсик a :Кошка ;
+    rdfs:label "Барсик"@ru ;
+    :имеетСимптом :ПокраснениеУшей ,
+                  :ЧесоткаУшей .
+
+:Шарик a :Собака ;
+    rdfs:label "Шарик"@ru ;
+    :имеетСимптом :ПокраснениеУшей .
+
+:ПокраснениеУшей a :Симптом ;
+    rdfs:label "Покраснение ушей"@ru .
+
+:ЧесоткаУшей a :Симптом ;
+    rdfs:label "Чесотка ушей"@ru .
