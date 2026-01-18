@@ -7,10 +7,8 @@
 <http://example.org/vetclinic_ru> a owl:Ontology ;
     rdfs:comment "Онтология ветеринарной клиники: пациенты (животные), симптомы, диагнозы, лечение."@ru .
 
-
 :Животное a owl:Class ;
-    rdfs:label "Животное"@ru ;
-    rdfs:comment "Пациент ветеринарной клиники."@ru .
+    rdfs:label "Животное"@ru .
 
 :Кошка a owl:Class ;
     rdfs:subClassOf :Животное ;
@@ -28,8 +26,7 @@
 
 :Отит a owl:Class ;
     rdfs:subClassOf :Диагноз ;
-    rdfs:label "Отит"@ru ;
-    rdfs:comment "Воспаление уха у животных."@ru .
+    rdfs:label "Отит"@ru .
 
 :Лечение a owl:Class ;
     rdfs:label "Лечение"@ru .
@@ -38,6 +35,9 @@
     rdfs:subClassOf :Лечение ;
     rdfs:label "Антибиотикотерапия"@ru .
 
+:ЖивотноеСОтитом a owl:Class ;
+    rdfs:subClassOf :Животное ;
+    rdfs:label "Животное с отитом"@ru .
 
 :имеетСимптом a owl:ObjectProperty ;
     rdfs:domain :Животное ;
@@ -53,8 +53,6 @@
     rdfs:domain :Животное ;
     rdfs:range :Лечение ;
     rdfs:label "назначено лечение"@ru .
-
-
 
 :Барсик a :Кошка ;
     rdfs:label "Барсик"@ru ;
