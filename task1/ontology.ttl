@@ -1,0 +1,92 @@
+@prefix : <http://www.semanticweb.org/rustools/ontologies/2025/10/university-ontology/> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix xml: <http://www.w3.org/XML/1998/namespace> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@base <http://www.semanticweb.org/rustools/ontologies/2025/10/university-ontology/> .
+
+<http://www.semanticweb.org/rustools/ontologies/2025/10/university-ontology> rdf:type owl:Ontology .
+
+#################################################################
+#    Object Properties
+#################################################################
+
+###  http://www.semanticweb.org/rustools/ontologies/2025/10/university-ontology/#посещает
+:посещает rdf:type owl:ObjectProperty ;
+          rdfs:domain :Студент ;
+          rdfs:range  :Учебный_курс .
+
+###  http://www.semanticweb.org/rustools/ontologies/2025/10/university-ontology/#преподает
+:преподает rdf:type owl:ObjectProperty ;
+           rdfs:domain :Преподаватель ;
+           rdfs:range  :Учебный_курс .
+
+###  http://www.semanticweb.org/rustools/ontologies/2025/10/university-ontology/#ведет_лабораторную
+:ведет_лабораторную rdf:type owl:ObjectProperty ;
+                    rdfs:domain :Ассистент ;
+                    rdfs:range  :Лабораторная_работа .
+
+#################################################################
+#    Classes
+#################################################################
+
+###  http://www.semanticweb.org/rustools/ontologies/2025/10/university-ontology/#Человек
+:Человек rdf:type owl:Class .
+
+###  http://www.semanticweb.org/rustools/ontologies/2025/10/university-ontology/#Студент
+:Студент rdf:type owl:Class ;
+         rdfs:subClassOf :Человек .
+
+###  http://www.semanticweb.org/rustools/ontologies/2025/10/university-ontology/#Преподаватель
+:Преподаватель rdf:type owl:Class ;
+               rdfs:subClassOf :Человек .
+
+###  http://www.semanticweb.org/rustools/ontologies/2025/10/university-ontology/#Ассистент
+:Ассистент rdf:type owl:Class ;
+           rdfs:subClassOf :Преподаватель .
+
+###  http://www.semanticweb.org/rustools/ontologies/2025/10/university-ontology/#Учебный_курс
+:Учебный_курс rdf:type owl:Class .
+
+###  http://www.semanticweb.org/rustools/ontologies/2025/10/university-ontology/#Лабораторная_работа
+:Лабораторная_работа rdf:type owl:Class .
+
+#################################################################
+#    Individuals
+#################################################################
+
+### Courses
+:Математическая_логика rdf:type owl:NamedIndividual , :Учебный_курс .
+
+:Базы_данных rdf:type owl:NamedIndividual , :Учебный_курс .
+
+### Lab works
+:ЛР1_Реляционная_модель rdf:type owl:NamedIndividual , :Лабораторная_работа .
+
+:ЛР2_SQL_запросы rdf:type owl:NamedIndividual , :Лабораторная_работа .
+
+### Teachers / assistants
+:Доцент_Кожухов rdf:type owl:NamedIndividual , :Преподаватель ;
+                :преподает :Математическая_логика .
+
+:Профессор_Гагарина rdf:type owl:NamedIndividual , :Преподаватель ;
+                    :преподает :Базы_данных .
+
+:Ассистент_Смирнова rdf:type owl:NamedIndividual , :Ассистент ;
+                    :ведет_лабораторную :ЛР1_Реляционная_модель ,
+                                       :ЛР2_SQL_запросы .
+
+### Students
+:Данилов_Артур rdf:type owl:NamedIndividual , :Студент ;
+               :посещает :Математическая_логика ,
+                         :Базы_данных .
+
+:Павлов_Динар rdf:type owl:NamedIndividual , :Студент ;
+              :посещает :Математическая_логика .
+
+:Шаповалова_Полина rdf:type owl:NamedIndividual , :Студент ;
+                   :посещает :Базы_данных .
+
+:Шевченко_Глеб rdf:type owl:NamedIndividual , :Студент ;
+               :посещает :Базы_данных .
